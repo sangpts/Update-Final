@@ -1,0 +1,63 @@
+/*primary colors*/
+
+$white-cl: #fff;
+$black-cl: #000;
+// final project
+$gray_text: rgb(80, 80, 80);
+$sky: #a29bfe;
+$sky-bold: #8e51ff;
+$border_set: 1px solid rgb(182, 182, 182);
+$box_shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.18);
+$textfield: rgb(161, 161, 161);
+$background_music: rgb(241, 239, 239);
+$btn_play: #ffeaa7;
+$primary: #2b48d9;
+$blue: rgba(85, 57, 214, 0.87);
+$transition_set: 0.2s cubic-bezier(1, .42, .58, .7);
+$border__admin: 0 5px 10px rgba(0, 0, 0, 0.1);
+$green: rgb(55, 255, 5);
+
+/*global text color*/
+
+$text-cl: #222;
+$text-black-cl: #000;
+
+/*global bg color*/
+
+$main-bg-cl: #000;
+$black-bg-cl: #000;
+// timing transition
+$t: 0.4s;
+$cubic: cubic-bezier(0.84, 0.13, 0.33, 0.97);
+
+/*font families*/
+
+$font-stack: "Open Sans",
+sans-serif;
+$font-main: arial;
+
+/*headings typo*/
+
+$fz-text: 16px;
+$lh-text: normal;
+$fz-text-m: 16px;
+$lh-text-m: normal;
+//============================================================//
+
+/*BOXED LAYOUT*/
+
+$container-max-width: 1920px;
+$container-width: 1220px; // tùy thuộc vào container của bản thiết kế mà chỉnh sửa cho hợp lý (cộng thêm 30px)
+
+/*GRID - media queries breakpoints*/
+
+$xxs-min: 576px; // CÓ THỂ TÙY CHỈNH
+$xs-min: 768px; // KHÔNG THAY ĐỔI
+$sm-min: 992px; // KHÔNG THAY ĐỔI
+$md-min: 1200px; // KHÔNG THAY ĐỔI
+$lg-min: 1600px; // CÓ THỂ TÙY CHỈNH
+$xxs-max: ($xxs-min - 1); // Small Mobile
+$xs-max: ($xs-min - 1); // Mobile
+$sm-max: ($sm-min - 1); // Tablet
+$md-max: ($md-min - 1); // Desktop
+$lg-max: ($lg-min - 1); // Large Desktop

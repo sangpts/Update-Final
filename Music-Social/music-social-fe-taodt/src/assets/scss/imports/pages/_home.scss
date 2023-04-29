@@ -1,0 +1,1326 @@
+.home {
+    width: 100%;
+    background-color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    .main {
+        width: 100%;
+        position: relative;
+        height: auto;
+        overflow: hidden;
+        top: 12vh;
+        .container-fluid {
+            .menu {
+                display: fixed;
+                width: 24%;
+                height: 100vh;
+                padding: 10px 20px;
+                position: fixed;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                top: 0;
+                left: 0;
+                margin-top: 100px;
+                margin-left: 20px;
+                &__list {
+                    width: 100%;
+                    padding: 0px 5px;
+                    &-title {
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-bottom: 12px;
+                    }
+                    &-items {
+                        width: 100%;
+                        .item {
+                            display: flex;
+                            flex-direction: column;
+                            margin-bottom: 5px;
+                            padding: 5px 5px;
+                            &__option {
+                                text-decoration: none;
+                                font-size: 16px;
+                                color: $gray_text;
+                                max-width: max-content;
+                                position: relative;
+                                transition: $transition_set;
+                                display: flex !important;
+                                cursor: pointer;
+                                i {
+                                    margin-right: 10px;
+                                }
+                                &:after {
+                                    position: absolute;
+                                    display: block;
+                                    content: "";
+                                    width: 100%;
+                                    height: 3px;
+                                    border-radius: 10px;
+                                    background: $sky;
+                                    margin-top: 19px;
+                                    transform: scaleX(0);
+                                    transition: $transition_set;
+                                }
+                                &:hover {
+                                    color: $sky;
+                                    transition: $transition_set;
+                                    &:after {
+                                        transition: $transition_set;
+                                        transform: scaleX(1);
+                                    }
+                                }
+                                span {
+                                    text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+                                    -webkit-line-clamp: 1; // số dòng muốn hiển thị
+                                    -webkit-box-orient: vertical;
+                                    display: -webkit-box;
+                                    overflow: hidden;
+                                }
+                            }
+                            .active {
+                                color: $blue;
+                                transition: $transition_set;
+                                &:after {
+                                    color: $blue;
+                                    transition: $transition_set;
+                                    transform: scaleX(1);
+                                }
+                            }
+                        }
+                    }
+                }
+                &__history {
+                    display: none;
+                    overflow: scroll;
+                    scroll-behavior: smooth;
+                    @include customscroll();
+                    width: 100%;
+                    height: auto;
+                    margin: 0px 0px;
+                    padding: 20px 5px;
+                    border-top: 2px solid rgb(94, 94, 94);
+                    &-title {
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-bottom: 12px;
+                    }
+                    &-list {
+                        width: 100%;
+                        .list__item {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-bottom: 5px;
+                            height: 40px;
+                            &-img {
+                                max-width: 30px;
+                                height: 30px;
+                                border-radius: 50%;
+                            }
+                            &-name {
+                                width: 30%;
+                                font-weight: bold;
+                                font-size: 16px;
+                                color: $gray_text;
+                                overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+                                text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+                                -webkit-line-clamp: 1; // số dòng muốn hiển thị
+                                -webkit-box-orient: vertical;
+                                display: -webkit-box;
+                            }
+                            &-author {
+                                display: inline;
+                                width: 30%;
+                                font-size: 15px;
+                                color: $gray_text;
+                                overflow: hidden; // ẩn các nội dung khi kích thước lớn hơn chiều rộng khối bên ngoài
+                                text-overflow: ellipsis; //thêm 3 dấu chấm ở cuối
+                                -webkit-line-clamp: 1; // số dòng muốn hiển thị
+                                -webkit-box-orient: vertical;
+                                display: -webkit-box;
+                            }
+                        }
+                    }
+                }
+            }
+            .post {
+                width: 50%;
+                height: 100%;
+                position: relative;
+                top: 0;
+                left: 27%;
+                z-index: 100;
+                .postdisplay {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    margin-top:15px;
+                }
+                .postperson {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    .edit-popup {
+                        position: fixed;
+                        z-index: 1000;
+                        width: 100vw;
+                        height: 100vh;
+                        top: 50%;
+                        left: 50%;
+                        display: none;
+                        transform: translate(-50%, -50%);
+                        background-color: rgba(163, 162, 162, 0.452);
+                        .post__items {
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 450px;
+                            height: 350px;
+                            .title {
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                font-size: 18px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                            }
+                            #outbtn {
+                                z-index: 1100;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 20px;
+                                height: 20px;
+                                padding: 5px 5px;
+                                border-radius: 50%;
+                                background-color: #fff;
+                                position: fixed;
+                                top: 0%;
+                                left: 0%;
+                                transform: translate(-50%, -50%);
+                                cursor: pointer;
+                                transition: $transition_set;
+                                &:hover {
+                                    background-color: rgba(255, 0, 0, 0.486);
+                                    transition: $transition_set;
+                                }
+                            }
+                            form {
+                                width: 100%;
+                                height: 250px;
+                                /* Textarea style */
+                                .brise-text {
+                                    width: 100%;
+                                    height: 95%;
+                                    position: relative;
+                                    overflow: hidden;
+                                    padding-top: 15px;
+                                }
+                                .brise-text textarea {
+                                    width: 100%!important;
+                                    padding: 10px;
+                                    border: none;
+                                    outline: none;
+                                    border: 1px solid #999;
+                                    box-sizing: border-box;
+                                    font-size: 16px;
+                                    position: relative;
+                                    z-index: 5;
+                                    background: none;
+                                }
+                                .brise-text label {
+                                    position: absolute;
+                                    top: 20px;
+                                    left: 10px;
+                                    color: #999;
+                                    opacity: 1;
+                                    transition: .15s;
+                                }
+                                .brise-text textarea:focus~label,
+                                textarea:valid~label {
+                                    opacity: 0;
+                                }
+                                /* End Textarea */
+                            }
+                        }
+                    }
+                    .active {
+                        display: block;
+                    }
+                }
+                .postfavrorite {
+                    .favorites {
+                        width: 100%;
+                        height: auto;
+                        .title {
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-bottom: 20px;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .box__favor {
+                            display: flex;
+                            flex-direction: column-reverse;
+                            .like {
+                                width: 100%;
+                                height: 50px;
+                                position: relative;
+                                margin-bottom: 20px;
+                                display: flex;
+                                justify-content: space-evenly;
+                                align-items: center;
+                                background-color: $background_music;
+                                border-radius: 10px;
+                                transition: 0.5s;
+                                .img {
+                                    width: 35px;
+                                    height: 35px;
+                                    border-radius: 50px;
+                                    object-fit: cover;
+                                }
+                                .name {
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: $gray_text;
+                                }
+                                .author {
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: $textfield;
+                                }
+                                a {
+                                    text-decoration: none;
+                                    text-align: center;
+                                    i {
+                                        color: $gray_text;
+                                    }
+                                }
+                                .time {
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: $textfield;
+                                }
+                                &:hover {
+                                    transition: 0.5s;
+                                    background-color: $btn_play;
+                                }
+                            }
+                        }
+                    }
+                }
+                .postcreate {
+                    .category {
+                        width: 100%;
+                        &__title {
+                            width: 100%;
+                            padding: 5px 5px;
+                            h3 {
+                                font-weight: bold;
+                                font-size: 18px;
+                                text-align: center;
+                                margin-bottom: 10px;
+                            }
+                            span {
+                                color: $textfield;
+                                font-size: 15px;
+                                margin: 5px 10px;
+                                padding: 5px 10px;
+                            }
+                        }
+                        &__list {
+                            width: 100%;
+                            height: auto;
+                            padding: 10px 10px;
+                            display: block;
+                            position: relative;
+                            height: 120px;
+                            &-item {
+                                font-size: 15px;
+                                width: auto;
+                                display: block;
+                                float: left;
+                                margin: 2px 5px;
+                                padding: 5px 10px;
+                                color: #fff;
+                                background-color: #8000ca;
+                                border: 1px solid #fff;
+                                border-radius: 5px;
+                                opacity: 1;
+                                cursor: pointer;
+                                transition: $transition_set;
+                                &:hover {
+                                    transition: $transition_set;
+                                    opacity: 0.7;
+                                }
+                            }
+                            .active {
+                                opacity: 0.7;
+                            }
+                        }
+                        &__music {
+                            display: flex;
+                            width: 100%;
+                            height: auto;
+                            justify-content: flex-start;
+                            flex-wrap: wrap;
+                            .like {
+                                width: calc(90%/3 - 16px);
+                                margin: 0px 16px;
+                                height: auto;
+                                position: relative;
+                                margin-bottom: 20px;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                background-color: $background_music;
+                                border-radius: 5px;
+                                transition: 0.5s;
+                                text-align: center;
+                                .img {
+                                    width: 100%;
+                                    height: 150px;
+                                    border-top-left-radius: 5px;
+                                    border-top-right-radius: 5px;
+                                    border-bottom-left-radius: 0px;
+                                    border-bottom-right-radius: 0px;
+                                    object-fit: cover;
+                                    margin-bottom: 5px;
+                                }
+                                .name {
+                                    width: 100%;
+                                    font-size: 16px;
+                                    margin-bottom: 5px;
+                                    font-weight: bold;
+                                    color: $gray_text;
+                                    padding: 0px 10px;
+                                }
+                                .author {
+                                    width: 100%;
+                                    font-size: 15px;
+                                    margin-bottom: 5px;
+                                    font-weight: bold;
+                                    color: $textfield;
+                                    padding: 0px 10px;
+                                }
+                                .item-create {
+                                    font-size: 14px;
+                                    border: 1px solid rgb(139, 139, 139);
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    background-color: #4cc705;
+                                    padding: 2px 2px;
+                                    margin-bottom: 5px;
+                                    opacity: 1;
+                                    transition: $transition_set;
+                                    &:hover {
+                                        transition: $transition_set;
+                                        opacity: 0.7;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .create-popup {
+                        position: fixed;
+                        z-index: 1000;
+                        width: 100vw;
+                        height: 100vh;
+                        top: 50%;
+                        left: 50%;
+                        display: none;
+                        transform: translate(-50%, -50%);
+                        background-color: rgba(163, 162, 162, 0.452);
+                        .post__items {
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 450px;
+                            height: 350px;
+                            .title {
+                                margin-top: 10px;
+                                margin-bottom: 10px;
+                                font-size: 18px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                            }
+                            #outbtn {
+                                z-index: 1100;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 20px;
+                                height: 20px;
+                                padding: 5px 5px;
+                                border-radius: 50%;
+                                background-color: #fff;
+                                position: fixed;
+                                top: 0%;
+                                left: 0%;
+                                transform: translate(-50%, -50%);
+                                cursor: pointer;
+                                transition: $transition_set;
+                                &:hover {
+                                    background-color: rgba(255, 0, 0, 0.486);
+                                    transition: $transition_set;
+                                }
+                            }
+                            form {
+                                width: 100%;
+                                height: 250px;
+                                /* Textarea style */
+                                .brise-text {
+                                    width: 100%;
+                                    height: 95%;
+                                    position: relative;
+                                    overflow: hidden;
+                                    padding-top: 15px;
+                                }
+                                .brise-text textarea {
+                                    width: 100%!important;
+                                    padding: 10px;
+                                    border: none;
+                                    outline: none;
+                                    border: 1px solid #999;
+                                    box-sizing: border-box;
+                                    font-size: 16px;
+                                    position: relative;
+                                    z-index: 5;
+                                    background: none;
+                                }
+                                .brise-text label {
+                                    position: absolute;
+                                    top: 20px;
+                                    left: 10px;
+                                    color: #999;
+                                    opacity: 1;
+                                    transition: .15s;
+                                }
+                                .brise-text textarea:focus~label,
+                                textarea:valid~label {
+                                    opacity: 0;
+                                }
+                                /* End Textarea */
+                            }
+                        }
+                    }
+                    .active {
+                        display: block;
+                    }
+                }
+            }
+            .music {
+                width: 20%;
+                height: 75vh;
+                background-color: #fff;
+                position: fixed;
+                top: 0;
+                right: 0;
+                margin-top: 100px;
+                margin-right: 30px;
+                box-shadow: $box_shadow;
+                border-radius: 20px;
+                &__title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+                &__noti {
+                    width: 100%;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0px 20px;
+                    img {
+                        width: 40%;
+                        margin-bottom: 20px;
+                    }
+                }
+                &__audio {
+                    display: none;
+                    width: 80%;
+                    margin: 10px auto;
+                    padding: 20px;
+                    &-postcard {
+                        max-width: 300px;
+                        height: 50vh;
+                        border-radius: 20px;
+                        box-shadow: $box_shadow;
+                        padding: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                        text-align: center;
+                        margin: auto;
+                        .player {
+                            position: relative;
+                            width: 120px;
+                            height: 120px;
+                            border-radius: 50%;
+                            &__img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                    .player-title {
+                        font-size: 18px;
+                        padding: 10px 0px;
+                        .title {
+                            width: 100%;
+                            align-self: stretch;
+                        }
+                    }
+                    .player-author {
+                        font-size: 12px;
+                        font-family:Verdana, Geneva, Tahoma, sans-serif;
+                        font-weight: bolder;
+                        color: #5539D6DE
+                    }
+                    .progress {
+                        margin-bottom: 10px;
+                        margin-top: 10px;
+                        width: 100%;
+                        height: 50px;
+                        #progress__input {
+                            -webkit-appearance: none;
+                            width: 100%;
+                            height: 8px;
+                            border-radius: 20px;
+                            background: #d3d3d3;
+                            outline: none;
+                            -webkit-transition: 0.2s;
+                            transition: opacity 0.2s;
+                        }
+                        #progress__input::-webkit-slider-thumb {
+                            -webkit-appearance: none;
+                            width: 20px;
+                            height: 20px;
+                            background: $sky;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            transition: 0.5;
+                            &:active {
+                                transition: 0.5;
+                                background: rgb(156, 224, 233);
+                            }
+                        }
+                        // #progress__time {
+                        //     color: $gray_text;
+                        //     font-size: 18px;
+                        //     position: absolute;
+                        //     margin: 10px 0;
+                        // }
+                    }
+                    &-btn {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 20px;
+                        .player-play {
+                            color: $primary;
+                            width: 45px;
+                            height: 45px;
+                            border-radius: 100rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            background-color: white;
+                            box-shadow: 0 0 0 10px rgba(#f2f3f4, 0.5);
+                            font-size: 16px;
+                            margin: 0 40px;
+                        }
+                        .player-next,
+                        .player-prev {
+                            cursor: pointer;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+        .music-footer {
+            display: none;
+            background-color: $sky;
+            bottom: 60px;
+            position: fixed;
+            z-index: 400;
+            width: 100%;
+            height: 80px;
+            margin: 0px -30px;
+            padding: 0px 0px;
+            border-top: 1px solid #d3d3d3;
+            .music__title {
+                display: none;
+            }
+            .music__audio {
+                width: 100%;
+                height: 100%;
+                padding: 0px 30px;
+                display: flex;
+                align-items: center;
+                margin: 0px;
+                &-postcard {
+                    border: none;
+                    box-shadow: none;
+                    border-radius: 0px;
+                    min-width: 80%;
+                    height: 100%;
+                    flex-direction: row;
+                    margin: 0px;
+                    .player {
+                        width: 60px;
+                        height: 60px;
+                        &__img {
+                            width: 60px;
+                            height: 60px;
+                        }
+                    }
+                    .name-author {
+                        width: 100px;
+                        .player-title {
+                            margin: 0px;
+                            padding: 0px;
+                        }
+                        .player-author {
+                            margin: 0px;
+                        }
+                    }
+                    .progress {
+                        width: 400px;
+                        #progress__input::-webkit-slider-thumb {
+                            background-color: #8000ca;
+                        }
+                    }
+                }
+                &-btn {
+                    width: 20%;
+                    margin: 0px;
+                    justify-content: flex-start;
+                    .player-prev {
+                        display: none;
+                    }
+                    .player-next {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .music-popup {
+            display: none;
+            background-color: #fff;
+            position: fixed;
+            z-index: 10000;
+            width: 100vw;
+            height: 100vh;
+            bottom: -100vh;
+            left: 0;
+            margin: 0px auto;
+            .music__title {
+                .icon__out {
+                    width: 30px;
+                    height: 30px;
+                    img {
+                        left: 0;
+                        margin-left: 30px;
+                        height: 100%;
+                        width: 100%;
+                        &:before {
+                            min-height: 100%;
+                            min-width: 100%;
+                        }
+                    }
+                }
+                h4 {}
+            }
+            .music__audio {
+                height: 40vh;
+                &-postcard {
+                    background-color: rgb(171, 81, 194);
+                    height: 30vh;
+                }
+            }
+            .menu__history {
+                padding: 20px 40px;
+                overflow: scroll;
+                scroll-behavior: smooth;
+                @include customscroll();
+                height: 60vh;
+            }
+        }
+        .menu-footer {
+            display: none;
+            width: 100%;
+            position: fixed;
+            z-index: 1010;
+            bottom: 0;
+            height: 60px;
+            background-color: #fff;
+            left: 0;
+            align-items: center;
+            .menu__list {
+                width: 100%;
+                &-title {
+                    display: none;
+                }
+                &-items {
+                    display: flex;
+                    flex-direction: row;
+                    align-self: center;
+                    justify-content: space-between;
+                    .item {
+                        align-items: center;
+                        width: calc(100%/5);
+                        &__option {
+                            text-align: center;
+                            i {
+                                margin: 5px 5px;
+                                padding: 5px 10px;
+                            }
+                            span {
+                                display: none;
+                            }
+                            &:after {
+                                margin-top: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // desktop
+    @media (max-width: 1199px) {
+        .main {
+            .container-fluid {
+                .post {
+                    .postcreate {
+                        .category {
+                            .like {
+                                width: calc(100%/2 - 28px);
+                                margin: 0px 14px;
+                                margin-bottom: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // ipad pro
+    @media (max-width: 1024px) {
+        .header__main {
+            .container-fluid {
+                .search {
+                    width: 35%;
+                }
+                .right {
+                    .btn1 {
+                        font-size: 14px;
+                    }
+                    .user {
+                        width: 100px;
+                        &__name {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+        .main {
+            .container-fluid {
+                .music {
+                    margin-top: 150px;
+                    height: 65vh;
+                    &__audio {
+                        &-postcard {
+                            .player {
+                                width: 100px;
+                                height: 100px;
+                                &__img {
+                                    width: 100px;
+                                    height: 100px;
+                                }
+                            }
+                            .player-title {
+                                margin: 10px 0px;
+                                font-size: 14px;
+                            }
+                            .player-author {
+                                font-size: 13px;
+                            }
+                            .progress {
+                                margin-top: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+                .post {
+                    .postedit {
+                        .post__items {
+                            .left-right {
+                                .right {
+                                    width: 130%;
+                                }
+                            }
+                        }
+                    }
+                    .postcreate {
+                        .category {
+                            &__music {
+                                justify-content: space-between;
+                                .like {
+                                    width: 43%;
+                                    height: 200px;
+                                    .img {
+                                        height: 100px;
+                                    }
+                                    .name {
+                                        font-size: 14px;
+                                    }
+                                    .author {
+                                        font-size: 13px;
+                                    }
+                                    .item-create {
+                                        font-size: 13px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .menu-footer {
+                    display: flex;
+                }
+            }
+        }
+    }
+    // ipad
+    @media (max-width: 991px) {
+        .header__main {
+            .container-fluid {
+                .logo {
+                    width: 15%;
+                }
+                .search {
+                    width: 35%;
+                }
+                .right {
+                    width: 35%;
+                    .btn1 {
+                        font-size: 14px;
+                    }
+                    .user {
+                        width: 100px;
+                        &__name {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+        .notification {
+            top: 100px;
+        }
+        .main {
+            .container-fluid {
+                .music {
+                    display: none;
+                    &__audio {
+                        &-postcard {
+                            .player {
+                                width: 100px;
+                                height: 100px;
+                                &__img {
+                                    width: 100px;
+                                    height: 100px;
+                                }
+                            }
+                            .player-title {
+                                margin: 10px 0px;
+                                font-size: 16px;
+                            }
+                            .player-author {
+                                font-size: 14px;
+                            }
+                            .progress {
+                                margin-top: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+                .post {
+                    width: 80%;
+                    left: 0;
+                    margin: auto;
+                    .postcreate {
+                        .category {
+                            &__music {
+                                justify-content: space-between;
+                                .like {
+                                    width: 40%;
+                                    height: 200px;
+                                    .img {
+                                        height: 100px;
+                                    }
+                                    .name {
+                                        font-size: 14px;
+                                    }
+                                    .author {
+                                        font-size: 13px;
+                                    }
+                                    .item-create {
+                                        font-size: 13px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .menu {
+                    display: none;
+                }
+                .music-footer {
+                    display: block;
+                    .music-notify {
+                        width: auto;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .music__audio {
+                        display: none;
+                        .player {
+                            width: 60px;
+                            height: 60px;
+                            &__img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+                .music-popup {
+                    display: block;
+                    .music__title {
+                        margin-top: 10px;
+                    }
+                    .music__audio {
+                        height: 50vh;
+                        &-postcard {
+                            height: 35vh;
+                        }
+                    }
+                }
+                .active {
+                    display: block;
+                }
+            }
+        }
+    }
+    // ipad vs smart phone
+    @media (max-width: 767px) {
+        .main {
+            .container-fluid {
+                .music {
+                    display: none;
+                    &__audio {
+                        &-postcard {
+                            height: 100%;
+                            .player {
+                                width: 50px;
+                                height: 50px;
+                                &__img {
+                                    width: 50px;
+                                    height: 50px;
+                                }
+                            }
+                            .player-title {
+                                margin: 10px 0px;
+                                font-size: 16px;
+                            }
+                            .player-author {
+                                font-size: 14px;
+                            }
+                            .progress {
+                                width: 300px;
+                                margin-top: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+                .post {
+                    width: 80%;
+                    left: 0;
+                    margin: auto;
+                    .postcreate {
+                        .category {
+                            &__music {
+                                justify-content: space-between;
+                                .like {
+                                    width: 40%;
+                                    height: 200px;
+                                    .img {
+                                        height: 100px;
+                                    }
+                                    .name {
+                                        font-size: 14px;
+                                    }
+                                    .author {
+                                        font-size: 13px;
+                                    }
+                                    .item-create {
+                                        font-size: 13px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .menu {
+                    display: none;
+                }
+            }
+        }
+    }
+    // ipad vs small phone screen
+    @media (max-width: 575px) {
+        .header__main {
+            .container-fluid {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                .logo {
+                    width: 12%;
+                    padding: 0px;
+                    margin-right: 20px;
+                    img {
+                        width: 35px;
+                        height: 35px;
+                    }
+                }
+                .search {
+                    width: 40%;
+                    padding: 5px 15px;
+                    margin-right: 40px;
+                    .search-input {
+                        padding: 0px;
+                    }
+                }
+                .right {
+                    width: 25%;
+                    .user {
+                        min-width: 40px;
+                        margin-right: 5px;
+                        &__avatar {
+                            width: 30px;
+                            height: 30px;
+                        }
+                        &__name {
+                            display: none;
+                        }
+                    }
+                    #notiBtn {
+                        padding: 4px;
+                        margin: 0px;
+                        font-size: 12px;
+                    }
+                    .btn1 {
+                        font-size: 10px;
+                        margin: 0px 0px 0px 5px;
+                        padding: 5px 5px;
+                    }
+                }
+            }
+        }
+        .main {
+            .post__items {
+                .contents {
+                    .content {
+                        font-size: 14px;
+                    }
+                }
+                .owner {
+                    height: 40px;
+                    img {
+                        width: 35px;
+                        height: 35px;
+                    }
+                    a {
+                        font-size: 16px;
+                    }
+                }
+                .comment {
+                    form {
+                        .comment-btn {
+                            display: none;
+                        }
+                    }
+                }
+                .like {
+                    height: 40px;
+                    .img {
+                        width: 25px;
+                        height: 25px;
+                    }
+                    .name {
+                        font-size: 12px;
+                    }
+                    .author {
+                        font-size: 12px;
+                    }
+                }
+            }
+            .container-fluid {
+                .post {
+                    width: 90%;
+                    margin-bottom: 200px;
+                    .postcreate {
+                        .category {
+                            &__music {
+                                .like {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    .postedit {
+                        .post__items {
+                            .title {
+                                font-size: 14px;
+                                text-align: center;
+                            }
+                            .left-right {
+                                .left {
+                                    width: 20%;
+                                    &__items {
+                                        padding: 0px;
+                                        margin: 0px;
+                                    }
+                                }
+                                .right {
+                                    width: 60%;
+                                    &__items {
+                                        padding: 0px;
+                                        margin: 0px;
+                                        margin-left: 20px;
+                                    }
+                                    .file-right {
+                                        overflow: hidden;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .postfavrorite {
+                        .favorites {
+                            .like {
+                                .img {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                                .time {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                .music-footer {
+                    height: 40px;
+                    .music__audio {
+                        &-postcard {
+                            height: 100%;
+                            padding: 10px;
+                            .player {
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                                &__img {
+                                    width: 30px;
+                                    height: 30px;
+                                    margin: 0px;
+                                }
+                            }
+                            .name-author {
+                                margin: 0px 5px;
+                                .player-title {
+                                    font-size: 15px;
+                                }
+                                .player-author {
+                                    display: none;
+                                    font-size: 14px;
+                                }
+                            }
+                            .progress {
+                                width: 200px;
+                                margin: 0px;
+                                margin-right: 5px;
+                            }
+                        }
+                        &-btn {
+                            .player-play {
+                                box-shadow: none;
+                                position: relative;
+                                z-index: 500;
+                                margin: 0px;
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+                .music-popup {
+                    .music__title {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        height: 20px;
+                        .icon__out {
+                            margin-right: 50px;
+                            img {
+                                height: 20px;
+                                width: 20px;
+                            }
+                        }
+                    }
+                    .music__audio {
+                        &-postcard {
+                            .player {
+                                &__img {
+                                    margin-top: 10px;
+                                    width: 70px;
+                                    height: 70px;
+                                }
+                            }
+                            .player-title {
+                                margin: 5px 0px;
+                            }
+                        }
+                        .progress {
+                            margin-top: 10px;
+                        }
+                        &-btn {
+                            margin: 10px 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
